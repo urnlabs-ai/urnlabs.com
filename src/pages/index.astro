@@ -64,10 +64,10 @@ const toolkit = [
 >
   <header class="sticky top-0 z-20 px-4">
     <div
-      class="mx-auto mt-5 flex h-12 w-fit items-center gap-6 whitespace-nowrap rounded-full border border-hairline bg-[#161616]/90 px-6 backdrop-blur"
+      class="mx-auto mt-5 flex h-12 w-fit items-center gap-4 whitespace-nowrap rounded-full border border-hairline bg-[#161616]/90 px-4 backdrop-blur sm:gap-6 sm:px-6"
     >
       <a href="/" class="font-semibold tracking-tight">URN Labs</a>
-      <nav class="hidden items-center gap-6 text-sm text-muted sm:flex">
+      <nav class="flex items-center gap-4 text-xs text-muted sm:gap-6 sm:text-sm">
         <a href="#services" class="transition-colors hover:text-text">Services</a>
         <a href="#products" class="transition-colors hover:text-text">Products</a>
       </nav>
@@ -126,7 +126,7 @@ const toolkit = [
           <div class="grid grid-cols-1 gap-8 border-t border-hairline py-16 md:grid-cols-12">
             <div class="md:col-span-7">
               <p class="text-xs uppercase tracking-[0.14em] text-accent">{s.title}</p>
-              <h2 class="mt-5 max-w-[22ch] font-display text-3xl font-medium tracking-tight leading-[1.05] md:text-5xl" set:html={s.statement} />
+              <h2 class="mt-5 max-w-[22ch] font-display text-3xl font-medium tracking-tight leading-[1.05] md:text-5xl">{s.statement}</h2>
             </div>
             <div class="md:col-span-4 md:col-start-9">
               <p class="leading-relaxed text-muted">{s.description}</p>
@@ -142,9 +142,14 @@ const toolkit = [
     <section class="border-t border-hairline">
       <div class="wrap grid grid-cols-1 gap-6 py-24 md:grid-cols-12">
         <h2 class="text-sm text-muted md:col-span-3">How we work</h2>
-        <p class="max-w-5xl font-display text-2xl font-normal leading-[1.25] text-text md:col-span-9 md:text-4xl">
-          A senior engineer does the work. No handoffs, no layers between you and the person writing the code. We have shipped under SOC 2, HIPAA, GDPR and PCI DSS constraints, and the Kubernetes work is covered by CKAD certification. Engagements start with the systems you already run, not a greenfield re-architecture.
-        </p>
+        <div class="md:col-span-9">
+          <p class="font-display text-2xl md:text-4xl font-medium leading-[1.15] max-w-3xl">
+            A senior engineer does the work. No handoffs, no layers between you and the person writing the code.
+          </p>
+          <p class="mt-6 text-lg text-muted max-w-[60ch] leading-relaxed">
+            We have shipped under SOC 2, HIPAA, GDPR and PCI DSS constraints, and the Kubernetes work is covered by CKAD certification. Engagements start with the systems you already run, not a greenfield re-architecture.
+          </p>
+        </div>
       </div>
     </section>
 
@@ -200,7 +205,7 @@ const toolkit = [
     </div>
     <p
       aria-hidden="true"
-      class="mt-6 -mb-[0.14em] select-none whitespace-nowrap px-5 font-display text-[18vw] font-semibold leading-none tracking-[-0.05em] text-[#141414] md:px-8"
+      class="mt-6 -mb-[0.14em] select-none whitespace-nowrap px-5 font-display text-[18vw] font-semibold leading-none tracking-[-0.05em] text-wordmark md:px-8"
     >
       URN Labs
     </p>

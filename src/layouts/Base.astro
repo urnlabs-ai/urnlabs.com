@@ -39,6 +39,7 @@ const ogImage = new URL('/og.png', site);
     <meta name="twitter:image" content={ogImage} />
   </head>
   <body class="bg-bg text-text antialiased">
+    <a href="#top" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[70] focus:rounded-full focus:bg-accent focus:px-4 focus:py-2 focus:text-sm focus:text-bg">Skip to content</a>
     <slot />
 
     <!-- Cloudflare Web Analytics: uncomment and set the token to activate.
