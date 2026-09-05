@@ -1,0 +1,29 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="Page not found · URN Labs" description="The page you requested does not exist.">
+  <main class="flex min-h-[70dvh] items-center">
+    <div class="wrap">
+      <p class="font-mono text-sm text-accent">404</p>
+      <h1 class="mt-4 text-4xl tracking-tighter md:text-5xl">Page not found</h1>
+      <p class="mt-4 max-w-[65ch] leading-relaxed text-zinc-400">
+        The page you requested does not exist.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-4">
+        <a
+          href="/"
+          class="rounded-sm bg-accent px-6 py-3 text-sm font-medium text-zinc-950 transition-opacity hover:opacity-90"
+        >
+          Back to home
+        </a>
+        <a
+          href="mailto:hello@urnlabs.com"
+          class="rounded-sm border border-line px-6 py-3 text-sm font-medium text-zinc-100 transition-colors hover:border-zinc-500"
+        >
+          Start a conversation
+        </a>
+      </div>
+    </div>
+  </main>
+</Base>

@@ -1,0 +1,186 @@
+---
+import Base from '../layouts/Base.astro';
+
+const services = [
+  {
+    title: 'Fractional CTO & Technical Advisory',
+    description:
+      'Technology strategy, architecture standards and security posture. We advise from the developer standup to the board meeting, for companies that need senior technical judgment without a full-time hire.',
+    deliverables: [
+      'architecture reviews',
+      'security posture',
+      'roadmap and vendor selection',
+      'board reporting',
+    ],
+  },
+  {
+    title: 'Cloud & Platform Engineering',
+    description:
+      'Multi-cloud Kubernetes on EKS, OKE and GKE, Terraform infrastructure as code, and cloud cost optimization. We migrate workloads between clouds without downtime.',
+    deliverables: [
+      'EKS, OKE, GKE',
+      'Terraform IaC',
+      'cloud cost optimization',
+      'zero-downtime migration',
+    ],
+  },
+  {
+    title: 'AI Deployment & Automation',
+    description:
+      'RAG assistants and Azure OpenAI integrations, vLLM and GPU inference serving, and ML platform add-ons running on the Kubernetes clusters you already operate.',
+    deliverables: [
+      'RAG assistants',
+      'Azure OpenAI',
+      'vLLM GPU inference',
+      'ML platform on Kubernetes',
+    ],
+  },
+];
+---
+
+<Base
+  title="URN Labs · Cloud, Kubernetes and AI engineering"
+  description="URN Labs is a Lahore-based engineering studio for cloud, Kubernetes and AI infrastructure. Fractional CTO services, platform engineering and AI deployment."
+>
+  <header class="border-b border-line">
+    <div class="wrap flex h-16 items-center justify-between">
+      <a href="/" class="font-semibold tracking-tight">URN Labs</a>
+      <nav class="flex items-center gap-6 text-sm text-zinc-400">
+        <a href="#services" class="hidden sm:inline hover:text-zinc-100">Services</a>
+        <a href="#products" class="hidden sm:inline hover:text-zinc-100">Products</a>
+        <a href="#contact" class="hover:text-zinc-100">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="flex min-h-[92dvh] items-center pt-16">
+      <div class="wrap">
+        <h1 class="max-w-4xl text-4xl font-medium tracking-tighter leading-[1.05] text-zinc-50 md:text-6xl">
+          Cloud, Kubernetes and AI engineering for companies that cannot afford downtime.
+        </h1>
+        <p class="mt-6 max-w-[65ch] text-lg leading-relaxed text-zinc-400">
+          URN Labs is a Lahore-based engineering studio led by a working CTO. We run the infrastructure behind billion-message platforms, then build our own products.
+        </p>
+        <div class="mt-10 flex flex-wrap gap-4">
+          <a
+            href="mailto:hello@urnlabs.com"
+            class="rounded-sm bg-accent px-6 py-3 text-sm font-medium text-zinc-950 transition-opacity hover:opacity-90"
+          >
+            Start a conversation
+          </a>
+          <a
+            href="#services"
+            class="rounded-sm border border-line px-6 py-3 text-sm font-medium text-zinc-100 transition-colors hover:border-zinc-500"
+          >
+            Explore services
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="border-y border-line bg-surface">
+      <div class="wrap grid grid-cols-1 gap-8 py-10 md:grid-cols-12 md:gap-0 md:py-14">
+        <div class="md:col-span-6">
+          <p class="font-mono text-3xl tracking-tight text-accent md:text-4xl">$15-20K</p>
+          <p class="mt-2 text-sm leading-relaxed text-zinc-400">monthly cloud savings delivered</p>
+        </div>
+        <div class="md:col-span-3 md:border-l md:border-line md:pl-8">
+          <p class="font-mono text-3xl tracking-tight text-accent md:text-4xl">10B+</p>
+          <p class="mt-2 text-sm leading-relaxed text-zinc-400">messages per year kept running</p>
+        </div>
+        <div class="md:col-span-3 md:border-l md:border-line md:pl-8">
+          <p class="font-mono text-3xl tracking-tight text-accent md:text-4xl">~40</p>
+          <p class="mt-2 text-sm leading-relaxed text-zinc-400">apps migrated AWS to OCI, zero downtime</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="services" class="scroll-mt-16">
+      <div class="wrap py-20 md:py-28">
+        <h2 class="text-3xl tracking-tighter md:text-4xl">Services</h2>
+        <div class="mt-12 border-t border-line">
+          {services.map((s) => (
+            <div class="grid grid-cols-1 gap-6 border-b border-line py-10 md:grid-cols-12 md:gap-8">
+              <h3 class="md:col-span-4 text-xl font-medium tracking-tight">{s.title}</h3>
+              <div class="md:col-span-5">
+                <p class="max-w-[65ch] leading-relaxed text-zinc-400">{s.description}</p>
+              </div>
+              <ul class="md:col-span-3 space-y-1.5 font-mono text-[13px] leading-snug text-zinc-400">
+                {s.deliverables.map((d) => (
+                  <li>{d}</li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="py-20 md:py-28">
+      <div class="wrap grid grid-cols-1 gap-6 md:grid-cols-12 md:gap-8">
+        <h2 class="md:col-span-4 text-3xl tracking-tighter md:text-4xl">How we work</h2>
+        <div class="md:col-span-7 md:col-start-6">
+          <p class="max-w-[65ch] leading-relaxed text-zinc-400">
+            A senior engineer does the work. No handoffs, no layers between you and the person writing the code. We have shipped under SOC 2, HIPAA, GDPR and PCI DSS constraints, and the Kubernetes work is covered by CKAD certification. Engagements start with the systems you already run, not a greenfield re-architecture.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="products" class="border-t border-line scroll-mt-16">
+      <div class="wrap py-20 md:py-28">
+        <p class="font-mono text-xs uppercase tracking-[0.2em] text-accent">Products</p>
+        <h2 class="mt-4 text-3xl tracking-tighter md:text-4xl">From the lab</h2>
+        <p class="mt-4 max-w-[65ch] leading-relaxed text-zinc-400">
+          We build microSaaS tools and Android apps from the same infrastructure playbook.
+        </p>
+        <ul class="mt-10 border-t border-line">
+          <!-- TODO: replace with real product when launched -->
+          <li class="flex items-baseline justify-between border-b border-line py-4">
+            <span class="font-mono text-sm">TBD-1</span>
+            <span class="text-sm text-zinc-500">In development</span>
+          </li>
+          <!-- TODO: replace with real product when launched -->
+          <li class="flex items-baseline justify-between border-b border-line py-4">
+            <span class="font-mono text-sm">TBD-2</span>
+            <span class="text-sm text-zinc-500">In development</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="contact" class="border-t border-line scroll-mt-16">
+      <div class="wrap py-20 md:py-28">
+        <h2 class="text-3xl tracking-tighter md:text-4xl">Work with us</h2>
+        <a
+          href="mailto:hello@urnlabs.com"
+          class="mt-8 inline-block text-2xl tracking-tight text-accent hover:underline underline-offset-4 md:text-4xl break-all"
+        >
+          hello@urnlabs.com
+        </a>
+        <div class="mt-6">
+          <a
+            href="https://linkedin.com/in/usman-ramzan"
+            rel="me noopener"
+            class="text-sm text-zinc-400 hover:text-zinc-100 transition-colors"
+          >
+            linkedin.com/in/usman-ramzan
+          </a>
+        </div>
+        <p class="mt-16 font-mono text-sm text-zinc-500">Lahore, Pakistan · working remotely</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-line">
+    <div class="wrap flex flex-col gap-4 py-8 sm:flex-row sm:items-center sm:justify-between">
+      <p class="text-sm text-zinc-500">© 2026 URN Labs</p>
+      <nav class="flex gap-6 text-sm text-zinc-500">
+        <a href="#services" class="hover:text-zinc-100">Services</a>
+        <a href="#products" class="hover:text-zinc-100">Products</a>
+        <a href="#contact" class="hover:text-zinc-100">Contact</a>
+      </nav>
+    </div>
+  </footer>
+</Base>
