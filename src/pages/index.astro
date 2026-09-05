@@ -4,6 +4,7 @@ import Base from '../layouts/Base.astro';
 const services = [
   {
     title: 'Fractional CTO & Technical Advisory',
+    statement: "A CTO's judgment, without the full-time hire.",
     description:
       'Technology strategy, architecture standards and security posture. We advise from the developer standup to the board meeting, for companies that need senior technical judgment without a full-time hire.',
     deliverables: [
@@ -15,6 +16,7 @@ const services = [
   },
   {
     title: 'Cloud & Platform Engineering',
+    statement: 'Multi-cloud Kubernetes that stays boring.',
     description:
       'Multi-cloud Kubernetes on EKS, OKE and GKE, Terraform infrastructure as code, and cloud cost optimization. We migrate workloads between clouds without downtime.',
     deliverables: [
@@ -26,6 +28,7 @@ const services = [
   },
   {
     title: 'AI Deployment & Automation',
+    statement: 'AI systems that survive contact with production.',
     description:
       'RAG assistants and Azure OpenAI integrations, vLLM and GPU inference serving, and ML platform add-ons running on the Kubernetes clusters you already operate.',
     deliverables: [
@@ -37,34 +40,22 @@ const services = [
   },
 ];
 
-// Orbital SVG geometry. viewBox 640x400, center (320,200).
-const CX = 320;
-const CY = 200;
-const rings = [
-  { rx: 120, ry: 48, rot: -12 },
-  { rx: 200, ry: 80, rot: 18 },
-  { rx: 290, ry: 116, rot: -6 }, // spinning ring, no nodes
+const metrics = [
+  { value: '$15-20K', label: 'monthly cloud savings delivered' },
+  { value: '10B+', label: 'messages per year kept running' },
+  { value: '~40', label: 'apps migrated AWS to OCI, zero downtime' },
 ];
-// Nodes sit on the two static rings so their labels stay upright.
-const nodes = [
-  { ring: 0, t: 20, label: 'EKS' },
-  { ring: 0, t: 160, label: 'OKE' },
-  { ring: 0, t: 275, label: 'GKE' },
-  { ring: 1, t: 10, label: 'OCI' },
-  { ring: 1, t: 80, label: 'AZURE' },
-  { ring: 1, t: 150, label: 'GCP' },
-  { ring: 1, t: 215, label: 'VLLM' },
-  { ring: 1, t: 300, label: 'KAFKA' },
-].map((n) => {
-  const r = rings[n.ring];
-  const t = (n.t * Math.PI) / 180;
-  const a = (r.rot * Math.PI) / 180;
-  const x0 = r.rx * Math.cos(t);
-  const y0 = r.ry * Math.sin(t);
-  const x = CX + x0 * Math.cos(a) - y0 * Math.sin(a);
-  const y = CY + x0 * Math.sin(a) + y0 * Math.cos(a);
-  return { x: x.toFixed(1), y: y.toFixed(1), label: n.label, below: y > CY };
-});
+
+const toolkit = [
+  'Terraform and Pulumi',
+  'Kamaji hosted control planes',
+  'Istio and Envoy',
+  'Kafka, Redis, PostgreSQL, Cassandra',
+  'GitHub Actions and ArgoCD',
+  'Prometheus and Grafana',
+  'Azure OpenAI and vLLM',
+  'SOC 2, HIPAA, GDPR, PCI DSS',
+];
 ---
 
 <Base
@@ -90,12 +81,14 @@ const nodes = [
   </header>
 
   <main id="top">
-    <section class="hero-wash -mt-[68px] pt-[68px]">
-      <div class="wrap pt-24 pb-16 md:pt-36 md:pb-24">
-        <h1 class="max-w-4xl text-4xl font-medium tracking-tighter leading-[1.05] md:text-6xl">
+    <section class="hero-atmos -mt-[68px] flex min-h-[88dvh] flex-col justify-center pt-[68px]">
+      <div class="wrap pt-24 pb-24">
+        <h1
+          class="max-w-6xl font-display text-6xl font-semibold tracking-[-0.03em] leading-[0.95] text-balance md:text-7xl"
+        >
           Cloud, Kubernetes and AI engineering for companies that <span class="text-accent">cannot afford downtime</span>.
         </h1>
-        <p class="mt-6 max-w-[65ch] text-lg leading-relaxed text-muted">
+        <p class="mt-8 max-w-[52ch] text-lg leading-relaxed text-muted">
           URN Labs is a Lahore-based engineering studio led by a working CTO. We run the infrastructure behind billion-message platforms, then build our own products.
         </p>
         <div class="mt-10 flex flex-wrap gap-4">
@@ -112,167 +105,104 @@ const nodes = [
             Explore services
           </a>
         </div>
-
-        <svg
-          class="mx-auto mt-16 w-full max-w-[640px] overflow-visible md:mt-24"
-          viewBox="0 0 640 400"
-          role="img"
-          aria-label="Orbital diagram of the platforms URN Labs operates"
-        >
-          <defs>
-            <radialGradient id="core">
-              <stop offset="0%" stop-color="#bbf7d0" />
-              <stop offset="55%" stop-color="#34d399" />
-              <stop offset="100%" stop-color="#34d399" stop-opacity="0" />
-            </radialGradient>
-            <filter id="blur" x="-100%" y="-100%" width="300%" height="300%">
-              <feGaussianBlur stdDeviation="40" />
-            </filter>
-          </defs>
-
-          <circle class="orbit-glow" cx={CX} cy={CY} r="60" fill="#34d399" opacity="0.5" filter="url(#blur)" />
-
-          {rings.slice(0, 2).map((r) => (
-            <ellipse
-              cx={CX}
-              cy={CY}
-              rx={r.rx}
-              ry={r.ry}
-              transform={`rotate(${r.rot} ${CX} ${CY})`}
-              fill="none"
-              stroke="#26262a"
-              stroke-width="1"
-            />
-          ))}
-          <g class="orbit-spin">
-            <g transform={`rotate(${rings[2].rot} ${CX} ${CY})`}>
-              <ellipse cx={CX} cy={CY} rx={rings[2].rx} ry={rings[2].ry} fill="none" stroke="#26262a" stroke-width="1" />
-            </g>
-          </g>
-
-          <circle cx={CX} cy={CY} r="28" fill="url(#core)" />
-
-          {nodes.map((n) => (
-            <g>
-              <circle cx={n.x} cy={n.y} r="4" fill="#34d399" />
-              <text
-                x={n.x}
-                y={n.below ? Number(n.y) + 18 : Number(n.y) - 10}
-                text-anchor="middle"
-                fill="#9ca3af"
-                font-family="Geist Mono Variable, ui-monospace, monospace"
-                font-size="11"
-              >
-                {n.label}
-              </text>
-            </g>
-          ))}
-        </svg>
       </div>
     </section>
 
-    <section class="pb-20 md:pb-28">
-      <div class="wrap grid grid-cols-1 gap-4 md:grid-cols-12">
-        <div class="rounded-lg border border-hairline bg-elevated p-6 md:col-span-6">
-          <p class="font-mono text-4xl tracking-tight md:text-5xl">$15-20<span class="text-accent">K</span></p>
-          <p class="mt-3 text-sm leading-relaxed text-muted">monthly cloud savings delivered</p>
-        </div>
-        <div class="rounded-lg border border-hairline bg-elevated p-6 md:col-span-3">
-          <p class="font-mono text-4xl tracking-tight md:text-5xl">10<span class="text-accent">B+</span></p>
-          <p class="mt-3 text-sm leading-relaxed text-muted">messages per year kept running</p>
-        </div>
-        <div class="rounded-lg border border-hairline bg-elevated p-6 md:col-span-3">
-          <p class="font-mono text-4xl tracking-tight md:text-5xl"><span class="text-accent">~</span>40</p>
-          <p class="mt-3 text-sm leading-relaxed text-muted">apps migrated AWS to OCI, zero downtime</p>
-        </div>
+    <section class="border-y border-hairline">
+      <div class="wrap grid grid-cols-1 md:grid-cols-3">
+        {metrics.map((m, i) => (
+          <div class:list={['px-8 py-12', i > 0 && 'border-t border-hairline md:border-t-0 md:border-l']}>
+            <div class="w-10 border-t-2 border-accent"></div>
+            <p class="mt-6 font-display text-5xl font-medium tabular-nums tracking-tight text-text md:text-6xl">{m.value}</p>
+            <p class="mt-3 text-sm text-muted">{m.label}</p>
+          </div>
+        ))}
       </div>
     </section>
 
-    <section id="services" class="scroll-mt-24 border-t border-hairline">
-      <div class="wrap py-20 md:py-28">
-        <h2 class="text-2xl font-medium tracking-tight md:text-3xl">Services</h2>
-        <div class="mt-12 border-t border-hairline">
-          {services.map((s) => (
-            <div class="grid grid-cols-1 gap-6 border-b border-hairline py-10 md:grid-cols-12 md:gap-8">
-              <h3 class="text-xl font-medium tracking-tight md:col-span-4">{s.title}</h3>
-              <div class="md:col-span-5">
-                <p class="max-w-[65ch] leading-relaxed text-muted">{s.description}</p>
-              </div>
-              <ul class="space-y-1.5 font-mono text-[13px] leading-snug text-muted md:col-span-3">
-                {s.deliverables.map((d) => (
-                  <li>{d}</li>
-                ))}
+    <section id="services" class="scroll-mt-24">
+      <div class="wrap pt-20">
+        {services.map((s) => (
+          <div class="grid grid-cols-1 gap-8 border-t border-hairline py-16 md:grid-cols-12">
+            <div class="md:col-span-7">
+              <p class="text-xs uppercase tracking-[0.14em] text-accent">{s.title}</p>
+              <h2 class="mt-5 max-w-[22ch] font-display text-3xl font-medium tracking-tight leading-[1.05] md:text-5xl" set:html={s.statement} />
+            </div>
+            <div class="md:col-span-4 md:col-start-9">
+              <p class="leading-relaxed text-muted">{s.description}</p>
+              <ul class="mt-6 space-y-1.5 font-mono text-xs text-text/70">
+                {s.deliverables.map((d) => <li>{d}</li>)}
               </ul>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
     </section>
 
-    <section class="py-20 md:py-28">
-      <div class="wrap grid grid-cols-1 gap-6 md:grid-cols-12 md:gap-8">
-        <h2 class="text-2xl font-medium tracking-tight md:col-span-4 md:text-3xl">How we work</h2>
-        <div class="md:col-span-7 md:col-start-6">
-          <p class="max-w-[65ch] leading-relaxed text-muted">
-            A senior engineer does the work. No handoffs, no layers between you and the person writing the code. We have shipped under SOC 2, HIPAA, GDPR and PCI DSS constraints, and the Kubernetes work is covered by CKAD certification. Engagements start with the systems you already run, not a greenfield re-architecture.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section id="products" class="scroll-mt-24 border-t border-hairline">
-      <div class="wrap py-20 md:py-28">
-        <p class="font-mono text-xs uppercase tracking-[0.2em] text-accent">Products</p>
-        <h2 class="mt-4 text-2xl font-medium tracking-tight md:text-3xl">From the lab</h2>
-        <p class="mt-4 max-w-[65ch] leading-relaxed text-muted">
-          We build microSaaS tools and Android apps from the same infrastructure playbook.
+    <section class="border-t border-hairline">
+      <div class="wrap grid grid-cols-1 gap-6 py-24 md:grid-cols-12">
+        <h2 class="text-sm text-muted md:col-span-3">How we work</h2>
+        <p class="max-w-5xl font-display text-2xl font-normal leading-[1.25] text-text md:col-span-9 md:text-4xl">
+          A senior engineer does the work. No handoffs, no layers between you and the person writing the code. We have shipped under SOC 2, HIPAA, GDPR and PCI DSS constraints, and the Kubernetes work is covered by CKAD certification. Engagements start with the systems you already run, not a greenfield re-architecture.
         </p>
-        <ul class="mt-10 border-t border-hairline">
-          <!-- TODO: replace with real product when launched -->
-          <li class="flex items-baseline justify-between border-b border-hairline py-4">
-            <span class="font-mono text-sm">TBD-1</span>
-            <span class="text-sm text-muted">In development</span>
-          </li>
-          <!-- TODO: replace with real product when launched -->
-          <li class="flex items-baseline justify-between border-b border-hairline py-4">
-            <span class="font-mono text-sm">TBD-2</span>
-            <span class="text-sm text-muted">In development</span>
-          </li>
+      </div>
+    </section>
+
+    <section class="border-t border-hairline">
+      <div class="wrap py-24">
+        <h2 class="text-sm text-muted">Also in the toolkit</h2>
+        <ul class="mt-10 grid grid-cols-1 gap-x-12 gap-y-4 font-display text-2xl font-medium leading-[1.2] md:grid-cols-2 md:text-3xl">
+          {toolkit.map((t) => <li>{t}</li>)}
         </ul>
       </div>
     </section>
 
+    <section id="products" class="scroll-mt-24 border-t border-hairline">
+      <div class="wrap py-24">
+        <h2 class="font-display text-3xl font-medium tracking-tight">From the lab</h2>
+        <p class="mt-6 max-w-[58ch] text-lg leading-relaxed text-muted">
+          We build microSaaS tools and Android apps from the same infrastructure playbook. First releases are in development; write to <a href="mailto:hello@urnlabs.com" class="text-text underline-offset-4 hover:underline">hello@urnlabs.com</a> to hear when they ship.
+        </p>
+      </div>
+    </section>
+
     <section id="contact" class="scroll-mt-24 border-t border-hairline">
-      <div class="wrap py-20 md:py-28">
-        <h2 class="text-2xl font-medium tracking-tight md:text-3xl">Work with us</h2>
+      <div class="wrap py-24">
+        <h2 class="text-sm text-muted">Work with us</h2>
         <a
           href="mailto:hello@urnlabs.com"
-          class="mt-8 inline-block break-all text-2xl tracking-tight text-accent underline-offset-4 hover:underline md:text-4xl"
+          class="mt-6 inline-block break-all font-display text-4xl font-medium tracking-tight text-text underline-offset-8 hover:underline md:text-6xl"
         >
           hello@urnlabs.com
         </a>
-        <div class="mt-6">
+        <div class="mt-10 flex flex-col gap-2 text-sm text-muted">
           <a
             href="https://linkedin.com/in/usman-ramzan"
             rel="me noopener"
-            class="text-sm text-muted transition-colors hover:text-accent"
+            class="w-fit transition-colors hover:text-text"
           >
             linkedin.com/in/usman-ramzan
           </a>
+          <p>Lahore, Pakistan · working remotely</p>
         </div>
-        <p class="mt-16 font-mono text-sm text-muted">Lahore, Pakistan · working remotely</p>
       </div>
     </section>
   </main>
 
-  <footer class="border-t border-hairline">
-    <div class="wrap flex flex-col gap-4 py-8 sm:flex-row sm:items-center sm:justify-between">
+  <footer class="overflow-hidden border-t border-hairline">
+    <div class="wrap flex flex-col gap-4 pt-10 sm:flex-row sm:items-center sm:justify-between">
       <p class="text-sm text-muted">© 2026 URN Labs</p>
       <nav class="flex gap-6 text-sm text-muted">
-        <a href="#services" class="transition-colors hover:text-accent">Services</a>
-        <a href="#products" class="transition-colors hover:text-accent">Products</a>
-        <a href="#contact" class="transition-colors hover:text-accent">Contact</a>
+        <a href="#services" class="transition-colors hover:text-text">Services</a>
+        <a href="#products" class="transition-colors hover:text-text">Products</a>
+        <a href="#contact" class="transition-colors hover:text-text">Contact</a>
       </nav>
     </div>
+    <p
+      aria-hidden="true"
+      class="mt-6 -mb-[0.14em] select-none whitespace-nowrap px-5 font-display text-[18vw] font-semibold leading-none tracking-[-0.05em] text-[#141414] md:px-8"
+    >
+      URN Labs
+    </p>
   </footer>
 </Base>

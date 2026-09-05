@@ -2,6 +2,7 @@
 
 @theme {
   --font-sans: "Geist Variable", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: "Bricolage Grotesque Variable", "Geist Variable", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "Geist Mono Variable", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
   --color-bg: #0a0a0a;
@@ -50,30 +51,44 @@ a:focus-visible {
   transform: scale(0.98);
 }
 
-.hero-wash {
-  background: radial-gradient(ellipse at center, rgba(52, 211, 153, 0.07), transparent 60%);
+.hero-atmos {
+  position: relative;
+  isolation: isolate;
+}
+.hero-atmos::before,
+.hero-atmos::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+.hero-atmos::before {
+  background-image: radial-gradient(#ffffff14 1px, transparent 1px);
+  background-size: 28px 28px;
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, #000 30%, transparent 75%);
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, #000 30%, transparent 75%);
+}
+.hero-atmos::after {
+  background: radial-gradient(ellipse 60% 40% at 30% 20%, rgba(52, 211, 153, 0.1), transparent);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  @keyframes spin {
-    to {
-      transform: rotate(360deg);
-    }
-  }
-  @keyframes pulse-glow {
-    0%,
-    100% {
-      opacity: 0.5;
-    }
-    50% {
-      opacity: 0.25;
-    }
-  }
-  .orbit-spin {
-    transform-origin: center;
-    animation: spin 90s linear infinite;
-  }
-  .orbit-glow {
-    animation: pulse-glow 6s ease-in-out infinite;
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
